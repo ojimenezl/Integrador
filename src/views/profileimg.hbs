@@ -1,0 +1,60 @@
+
+       <div class="table-responsive-xl">
+            <!-- LIST -->
+            
+
+                <table class="table table-bordered">
+                    <thead class="thead-dark">
+                        <tr class="table-success">
+                            <th scope="col">Texto Extraido</th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+
+                        
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                       
+                            <tr>
+
+                                <td colspan="4">
+                                    {{docu.text}}
+                                </td>
+
+
+                                <td colspan="1">
+                <div class="card animated fadeInDown">
+                    <img src="{{docu.path}}" class="card-img-top" alt="{{docu.filename}}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{docu.title}}</h5>
+                        <p class="card-text">{{docu.description}}
+                        <p>{{created_at}}</p>
+                        <a href="{{docu.path}}" download="{{docu.filename}}" class="fa fa-download">
+                           
+                        </a>
+                        
+                    </div>
+                </div>
+                                     
+                                </td>
+                            
+                              
+                                
+
+                            </tr>
+
+  
+                    </tbody>
+                   
+                </table>
+
+
+            </div>
+
+
+
+
+

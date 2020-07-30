@@ -1,0 +1,223 @@
+
+       <div class="table-responsive-xl">
+            <!-- LIST -->
+            <form action="/image/{{par.id}}?_method=PUT"  method="POST">
+                 <input type="hidden" name="_method" value="PUT">
+
+                <table class="table table-bordered">
+                    <thead class="thead-dark">
+                        <tr class="table-success">
+                            <th scope="col">NOMBRE | CÉDULA DEMANDANTE</th>
+                            <th scope="col">CELULAR</th>
+                            <th scope="col">CORREO</th>
+                            <th scope="col">NOMBRE | CÉDULA DEMANDADO</th>
+                            <th scope="col">PREDICCIÓN</th>
+                            
+                        
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                       
+                            <tr>
+
+                                <td>
+                                    <input class="form-control form-control-sm" type="text" name="nombrecedula" value="{{par.nom1}}"required>
+                                    
+                                </td>
+
+                                <td>
+                                    <input class="form-control form-control-sm" type="text" name="celular" value="{{par.cel}}"required>
+                                    
+                                </td>
+
+                                <td>
+                                    <input class="form-control form-control-sm" type="text" name="correo" value="{{par.correo}}"required>
+                                    
+                                </td>
+
+                                <td>
+                                    <input class="form-control form-control-sm" type="text" name="nombrecedula2" value="{{par.nom2}}"required>
+                                   
+                                </td>
+
+                                <td>
+                                    
+                                    {{par.predi}}
+                                </td>
+                            <td>
+                                    
+                                    <button class="btn btn-primary" type="submit">Guardar </button>
+                                </td>
+                            
+                              
+                                
+
+                            </tr>
+
+  
+                    </tbody>
+                   
+                </table>
+                 
+                            
+                
+
+                <table class="table table-bordered">
+                    <thead class="thead-dark">
+                        <tr class="table-success">
+                            <th scope="col"></th>
+                            <th scope="col">Predicción</th>
+                            <th scope="col">Accuracy</th>
+                            <th scope="col">Precision</th>
+                            <th scope="col">Recall</th>
+                            <th scope="col">F-Measure</th>
+                        
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                       
+                            <tr>
+                                <th scope="row">NAIVE BAYES</th>
+                                <td>
+                                    {{par.NB}}
+                                </td>
+                                <td>
+                                    {{par.ANB}}
+                                </td>
+                                <td>
+                                    {{par.PNB}}
+                                </td>
+                                <td>
+                                    {{par.RNB}}
+                                </td>
+
+                                <td>
+                                    {{par.FNB}}
+                                </td>
+
+
+                           
+
+                            </tr>
+
+
+                            <tr>
+                               <th scope="row">SVM</th>
+                                <td>
+                                    {{par.SVM}}
+                                </td>
+                                <td>
+                                    {{par.ASVM}}
+                                </td>
+                                <td>
+                                    {{par.PSVM}}
+                                </td>
+                                <td>
+                                    {{par.RSVM}}
+                                </td>
+
+                                <td>
+                                    {{par.FSVM}}
+                                </td>
+
+
+                           
+
+                            </tr>
+                            <tr>
+                                <th scope="row">REG.LOGÍSTICA</th>
+                                <td>
+                                    {{par.RL}}
+                                </td>
+                                <td>
+                                    {{par.ARL}}
+                                </td>
+                                <td>
+                                    {{par.PRL}}
+                                </td>
+                                <td>
+                                    {{par.RRL}}
+                                </td>
+
+                                <td>
+                                    {{par.FRL}}
+                                </td>
+
+
+                           
+
+                            </tr>
+                            <tr>
+                                <th scope="row">KNN</th>
+                                <td>
+                                    {{par.KNN}}
+                                </td>
+                                <td>
+                                    {{par.AKNN}}
+                                </td>
+                                <td>
+                                    {{par.PKNN}}
+                                </td>
+                                <td>
+                                    {{par.RKNN}}
+                                </td>
+
+                                <td>
+                                    {{par.FKNN}}
+                                </td>
+
+
+                           
+
+                            </tr>
+
+
+
+
+  
+                    </tbody>
+                   
+                </table>
+                <table class="table table-bordered">
+                    <thead class="thead-dark">
+                        <tr class="table-success">
+                            <th scope="col">REDACCIÓN DEMANDA</th>
+
+                            
+                        
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                       
+                            <tr>
+
+                                <td>
+                                    <textarea  rows="10" cols="140" name="DEM" >{{par.DEM}}</textarea>
+                                   
+                                    
+                                </td>
+
+
+                            
+                              
+                                
+
+                            </tr>
+
+  
+                    </tbody>
+                   
+                </table>
+
+ </form>
+
+            </div>
+
+
+
+
+
+

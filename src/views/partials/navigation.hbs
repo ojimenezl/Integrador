@@ -1,0 +1,54 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand" href="/">ALIA</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+
+      </ul>
+      <ul class="navbar-nav ml-auto">
+        {{#if user}}
+
+
+              <li class="nav-item">
+                  <a class="nav-link" href="/upload"><i class="fas fa-upload"></i> PDF</a>
+              </li>
+
+              <li class="nav-item">
+                  <a class="nav-link" href="/uploadimg"><i class="fas fa-upload"></i> Imagen</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="/repositorio"><i class="fa fa-archive"></i> Mi Repositorio</a>
+              </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-plus"></i>
+              Mas
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="/notes">Mi Agenda</a>
+              <a class="dropdown-item" href="/notes/add">Agregar Nota</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="/repositorio">Repositorio</a>
+              <a class="dropdown-item" href="/redaccion">Redactar</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="/resumenes">Resumen</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="/users/logout">Logout</a>
+            </div>
+
+           
+          </li>
+        {{else}}
+          <li class="nav-item">
+            <a class="nav-link" href="/users/signin">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/users/signup">Register</a>
+          </li>
+        {{/if}}
+      </ul>
+    </div>
+  </div>
+</nav>

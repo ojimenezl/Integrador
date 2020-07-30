@@ -1,0 +1,84 @@
+
+
+
+       <div class="table-responsive-xl">
+            <!-- LIST -->
+            
+
+<form action="/redacion/prediccion" method="post">
+  <fieldset>
+    <legend>Hecho</legend>
+    
+       <textarea name="hecho" rows="10" cols="100">{{pares.H}}</textarea>
+    <legend>Petición</legend>
+       <textarea name="peticion" rows="10" cols="100">{{pares.P}}</textarea>
+    <legend>Pruebas</legend>
+       <textarea name="pruebas" rows="10" cols="100">{{pares.PB}}</textarea>
+    <br>
+    <legend>¿El acusado es padre biológico de su hijo?</legend>
+    <input type="radio" name="rsi" id="radio"> <label for="radio">SI</label>
+    <input type="radio" name="rno" id="radio"> <label for="radio">NO</label>
+   <br>
+   <button class="btn btn-success ">
+    Predecir
+   </button>
+         
+  </fieldset>
+</form>
+<br>
+
+                <table class="table table-bordered">
+                    <thead class="thead-dark">
+                        <tr class="table-success">
+                            <th scope="col">NAIVE BAYES</th>
+                            <th scope="col">SVM</th>
+                            <th scope="col">REG.LOGÍSTICA</th>
+                            <th scope="col">KNN</th>
+                            <th scope="col">PREDICCIÓN</th>
+  
+                        
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                       
+                            <tr>
+
+                                <td>
+                                    {{pares.NB}}
+                                </td>
+
+                                <td>
+                                    {{pares.SVM}}
+                                </td>
+
+                                <td>
+                                    {{pares.RL}}
+                                </td>
+
+                                <td>
+                                    {{pares.KNN}}
+                                </td>
+
+                                <td>
+                                    {{pares.predi}}
+                                </td>
+
+                            
+                              
+                                
+
+                            </tr>
+
+  
+                    </tbody>
+                   
+                </table>
+
+
+            </div>
+
+
+
+
+
