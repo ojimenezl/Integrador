@@ -1,0 +1,51 @@
+<<<<<<< HEAD
+version: "3"
+
+services:
+  web:
+    container_name: web
+    image: node
+    restart: always
+    build: .
+    ports:
+      - "80:4000"
+    links:
+      - mongo
+    volumes:
+      - .:/usr/src/app
+    environment:
+      - NOTES_APP_MONGODB_HOST=mongo
+      - NOTES_APP_MONGODB_DATABASE=notesdb
+  mongo:
+    container_name: database
+    image: mongo
+    ports:
+      - "27017:27017"
+    logging:
+      driver: none
+=======
+version: "3"
+
+services:
+  web:
+    container_name: web
+    image: node
+    restart: always
+    build: .
+    ports:
+      - "80:4000"
+    links:
+      - mongo
+    volumes:
+      - .:/usr/src/app
+    environment:
+      - NOTES_APP_MONGODB_HOST=mongo
+      - NOTES_APP_MONGODB_DATABASE=notesdb
+  mongo:
+    container_name: database
+    image: mongo
+    ports:
+      - "27017:27017"
+    logging:
+      driver: none
+>>>>>>> 9c2d4330f5c960df062bad887963af30d9b328f0
