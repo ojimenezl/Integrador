@@ -11,17 +11,13 @@ import pandas as pd
 import numpy as np
 import csv
 ngrup=2
+
+
+
 def vali(y_ver,labels,ngrup):
  #################  METODOS DE VALIDACION ##################################
  from sklearn.metrics import classification_report,confusion_matrix
- matriz=confusion_matrix(y_ver,labels) #(y=verdaderas del data vs y_prediccion)-----------> IMPORTANTE ######
- #print(matriz)
- #matriz=np.delete(matriz,0,0)
- #matriz=np.delete(matriz,ngrup+1,1)
- 
-
- #print("#######################################################################")
- #print(matriz,"\n")
+ matriz=confusion_matrix(y_ver,labels) 
 
 
  #print("---- Matriz Positive ----")
@@ -71,28 +67,21 @@ def vali(y_ver,labels,ngrup):
 
  return A1,P1,R1,F1
 
-
+########################################### EXTRACCION PDF #################################3
 
 carp="public"
 pdf= sys.argv[1]
 pdf=carp+pdf
 df= read_pdf(pdf, pages="2")
-#print(df)
-
 tabula.convert_into(pdf,("frmXYelim-291272" + '.csv'),output_format="csv",pages="2")
-
 pdf_documento=pdf
 documento= fitz.open(pdf_documento)
-#print("NUnmero de pag: ",documento.pageCount)
-#print("Metadatos: ",documento.metadata)
 pagina = documento.loadPage(1)
 text= pagina.getText("text")
 doc=(re.sub('[!?@#$()-.,;:*/0-9%"]+',' ',text.lower())).split()
-#print(docS)
-#doc=[]
-#for m in docS:
-# doc.append(normalize(m))
-###############################################
+
+
+################################### WHILE PARA OBTNER EL TEXTO DESEADO ############
 c=0
 m=0
 hecho=[]
@@ -197,29 +186,17 @@ while (c<len(doc)):
 
 #print(nombrecedula2)
 
-
+########################## DATA SET SENTENCIAS Y DIVISIÓN TRAINING Y TEST 70 - 30 
 
 import pandas as pd
 
 df = pd.read_table('sentencias2.csv', 
                    sep=';', 
                    names=['label','sms_message'],encoding='iso-8859-1')
-# Visualización de las 5 primeras filas
-#print(df.head())
-
-
-# Conversion
-#df['label'] = df.label.map(('neg':0), ('pos':1))
-# Visualizar las dimensiones de los datos
-#print(df.shape())
-
-# Definir los documentos
 documents = df
 # Importar el contador de vectorizacion e inicializarlo
 from sklearn.feature_extraction.text import CountVectorizer
 count_vector = CountVectorizer()
-# Visualizar del objeto'count_vector' que es una instancia de 'CountVectorizer()'
-#print(count_vector)
 
 count_vector.fit(documents)
 names = count_vector.get_feature_names()
@@ -235,15 +212,6 @@ frequency_matrix = pd.DataFrame(data=doc_array, columns=names)
 from sklearn.model_selection import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(df['sms_message'], df['label'], random_state=1)
 
-#print(X_train)
-
-
-
-#print('Number of rows in the total set: {}'.format(df.shape[0]))
-#print('Number of rows in the training set: {}'.format(X_train.shape[0]))
-#print('Number of rows in the test set: {}'.format(X_test.shape[0]))
-
-
 # Instantiate the CountVectorizer method
 count_vector = CountVectorizer()
 # Fit the training data and then return the matrix
@@ -252,7 +220,7 @@ training_data = count_vector.fit_transform(X_train)
 # Transform testing data and return the matrix. Note we are not fitting the testing data into the CountVectorizer()
 testing_data = count_vector.transform(X_test)
 
-
+################### ALGORIMTO NAIVE BAYES ##################################33
 from sklearn.naive_bayes import MultinomialNB
 naive_bayes = MultinomialNB()
 naive_bayes.fit(training_data, y_train)
@@ -263,65 +231,56 @@ predictions = naive_bayes.predict(testing_data)
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 
 
-
-#print("-----------------------------------------------")
-
-#nega="el señor no es padre biologico de mi hijo"
-#vectorh=vectorh+nega
+########### PREDICCION CON LO EXTRAIDO DEL PDF - DEMANDA ##########################3 
 X_test1=[demanda]
-#print(X_test1)
-
 testing_data = count_vector.transform(X_test1)
-
-#print("---testing_data = ",testing_data)
-
 predictionsNB = naive_bayes.predict(testing_data)
-#print("---prediccion = ",predictionsNB)
 predicNB = naive_bayes.predict(tt)
 
+##EVALUACIONES
 ANB,PNB,RNB,FNB=vali(y_test, predicNB,ngrup)
 
 ############################################# SVM #################################################################
 
 from sklearn import svm
-
 X = training_data
 y = y_train
 clf = svm.SVC()
 clf.fit(X, y)
 predictionsSVM=clf.predict(testing_data)
-#print("---prediccion SVM-CLAS= ",predictionsSVM)
 predicSVM = clf.predict(tt)
-
 ASVM,PSVM,RSVM,FSVM=vali(y_test, predicSVM,ngrup)
 
 ############################################ RL ###################
-from sklearn.linear_model import LogisticRegression
 
+from sklearn.linear_model import LogisticRegression
 clf = LogisticRegression(random_state=0,solver='lbfgs',class_weight='balanced', max_iter=10000).fit(X, y)
 predictionsRL=clf.predict(testing_data)
 predicRL = clf.predict(tt)
+##EVALUACIONES
 ARL,PRL,RRL,FRL=vali(y_test, predicRL,ngrup)
+
 ########################################### KNN ####################
+
 from sklearn.neighbors import NearestCentroid
 import numpy as np
-
 clf = NearestCentroid()
 clf.fit(X, y)
 predictionsKNN=clf.predict(testing_data)
 predicKNN = clf.predict(tt)
+##EVALUACIONES
 AKNN,PKNN,RKNN,FKNN=vali(y_test, predicKNN,ngrup)
 
 
-
+######## CONDICION CON REGRESION LOGISTICA POR TENER EL MEJOR ACCURACY #######
 if(predictionsRL==1):
  res='GANA'
- #print(res)
+
 else:
  res='PIERDE'
- #print(res) 
 
 
+######## PREPARACION DE DATOS PARA ENVIAR A NODEJS ###################
 predictionsNB=''.join(map(str, predictionsNB))
 predictionsSVM=''.join(map(str, predictionsSVM))
 predictionsRL=''.join(map(str, predictionsRL))
