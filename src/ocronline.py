@@ -77,22 +77,6 @@ carp="public"
 h= sys.argv[1]
 
 pdf=h
-#df= read_pdf(pdf, pages="2")
-#print(df)
-
-#tabula.convert_into(pdf,("frmXYelim-291272" + '.csv'),output_format="csv",pages="2")
-
-#pdf_documento=pdf
-#documento= fitz.open(pdf_documento)
-#print("NUnmero de pag: ",documento.pageCount)
-#print("Metadatos: ",documento.metadata)
-#pagina = documento.loadPage(1)
-#text= pagina.getText("text")
-#doc=(re.sub('[!?@#$()-.,;:*/0-9%"]+',' ',text.lower())).split()
-#print(docS)
-#doc=[]
-#for m in docS:
-# doc.append(normalize(m))
 
 
 
@@ -101,14 +85,7 @@ import pandas as pd
 df = pd.read_table('sentencias2.csv', 
                    sep=';', 
                    names=['label','sms_message'],encoding='iso-8859-1')
-# Visualización de las 5 primeras filas
-#print(df.head())
 
-
-# Conversion
-#df['label'] = df.label.map(('neg':0), ('pos':1))
-# Visualizar las dimensiones de los datos
-#print(df.shape())
 
 # Definir los documentos
 documents = df
@@ -132,13 +109,6 @@ frequency_matrix = pd.DataFrame(data=doc_array, columns=names)
 from sklearn.model_selection import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(df['sms_message'], df['label'], random_state=1)
 
-#print(X_train)
-
-
-
-#print('Number of rows in the total set: {}'.format(df.shape[0]))
-#print('Number of rows in the training set: {}'.format(X_train.shape[0]))
-#print('Number of rows in the test set: {}'.format(X_test.shape[0]))
 
 
 # Instantiate the CountVectorizer method
@@ -156,15 +126,8 @@ naive_bayes.fit(training_data, y_train)
 tt=testing_data
 predictions = naive_bayes.predict(testing_data)
 
-
+############################################# NAIVE BAYES #################################################################
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
-
-
-
-#print("-----------------------------------------------")
-
-#nega="el señor no es padre biologico de mi hijo"
-#vectorh=vectorh+nega
 X_test1=[pdf]
 #print(X_test1)
 
