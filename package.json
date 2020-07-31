@@ -4,7 +4,8 @@
     "description": "Notes App",
     "main": "index.js",
     "scripts": {
-        "start": "node index.js"
+        "start": "node src/index.js"
+        "dev": "nodemon /src"
     },
     "keywords": [],
     "author": "",
