@@ -4,7 +4,6 @@
   "description": "Notes App",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon src/index.js",
     "start": "node src/index.js"
   },
     "keywords": [],
@@ -27,9 +26,7 @@
         "passport-local": "^1.0.0",
         "python-shell": "^2.0.1",
         "timeago.js": "^4.0.2",
-        "uuid": "^8.2.0"
-    },
-    "devDependencies": {
+        "uuid": "^8.2.0",
         "dotenv": "^8.2.0",
         "handlebars": "^4.7.6",
         "nodemon": "^2.0.4",
